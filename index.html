@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>שאלון פתיחה | בן גביש</title>
+<meta name="description" content="כמה שאלות לפני השיעור הראשון, כדי שאבנה אותו סביב העבודה שלך.">
+<meta name="robots" content="noindex">
+<meta property="og:title" content="שאלון פתיחה לפני השיעור הראשון">
+<meta property="og:description" content="כמה שאלות קצרות, כדי שאבנה את השיעורים סביב העבודה שלך. בן גביש.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#f5f5f0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Heebo:wght@400;500;700;900&family=Karantina:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f5f5f0; --card:#fbfbf7; --ink:#14120f; --black:#080808;
+  --copper:#bd7b4f; --copper-hi:#d39468; --copper-lo:#9d6039; --note:#f4d640;
+  --muted:#5d584f;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:'Heebo',system-ui,Arial,sans-serif; background:var(--paper); color:var(--ink);
+  min-height:100vh; min-height:100dvh; overflow-x:hidden; line-height:1.45;
+  transition:background .35s ease,color .35s ease;
+}
+/* נייר: צלעות דקות + הלפטון נחושת בתחתית */
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:repeating-linear-gradient(90deg,rgba(20,18,15,.024) 0 1px,transparent 1px 5px)}
+body::after{content:"";position:fixed;left:0;right:0;bottom:0;height:42vh;pointer-events:none;z-index:0;
+  background-image:radial-gradient(rgba(189,123,79,.42) 1.3px,transparent 1.7px);background-size:9px 9px;
+  -webkit-mask-image:linear-gradient(to top,#000,transparent);mask-image:linear-gradient(to top,#000,transparent)}
+body.dark{background:var(--ink);color:var(--paper)}
+body.dark::before{background:repeating-linear-gradient(90deg,rgba(245,245,240,.03) 0 1px,transparent 1px 5px)}
+
+.app{position:relative;z-index:1;max-width:560px;margin:0 auto;min-height:100vh;min-height:100dvh;
+  display:flex;flex-direction:column;padding:0 20px}
+.top{display:flex;justify-content:space-between;align-items:center;padding:18px 0 12px}
+.brand{font-weight:900;letter-spacing:.14em;font-size:.86rem;direction:ltr;position:relative;padding-bottom:5px}
+.brand::after{content:"";position:absolute;left:0;bottom:0;width:26px;height:3px;background:var(--copper)}
+.count{font-weight:700;font-size:.86rem;direction:ltr;font-variant-numeric:tabular-nums;color:var(--muted)}
+.progress{height:4px;background:rgba(20,18,15,.12);overflow:hidden}
+.progress b{display:block;height:100%;width:0;background:var(--copper);transition:width .35s ease}
+.progress[hidden]{display:block;visibility:hidden}
+
+main{flex:1;display:flex;flex-direction:column;padding:18px 0 24px}
+.step{animation:in .32s ease both}
+@keyframes in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* ---------- פתיח ---------- */
+.hero{position:relative;display:flex;flex-direction:column;flex:1}
+.giant{font-family:'Karantina','Heebo',sans-serif;font-weight:700;text-align:center;
+  font-size:clamp(8.5rem,50vw,15rem);line-height:.74;letter-spacing:-.01em;user-select:none;
+  background:linear-gradient(172deg,var(--copper-hi),var(--copper) 46%,var(--copper-lo));
+  -webkit-background-clip:text;background-clip:text;color:transparent;padding-top:.16em}
+.giant span{display:block}
+.tag{display:inline-block;align-self:flex-start;background:var(--black);color:#fff;font-weight:700;
+  font-size:.74rem;letter-spacing:.16em;padding:8px 13px 11px;direction:ltr;position:relative}
+.tag::after{content:"";position:absolute;left:13px;bottom:6px;width:30px;height:2px;background:var(--copper)}
+.hero .tag{position:absolute;top:8px;right:0;transform:rotate(1.5deg);z-index:3}
+.note{position:absolute;top:clamp(5.5rem,34vw,10rem);left:-4px;z-index:3;background:var(--note);color:var(--ink);
+  font-family:'Amatic SC','Heebo',sans-serif;font-weight:700;font-size:1.55rem;line-height:1;
+  padding:12px 14px 14px;transform:rotate(-7deg);box-shadow:3px 5px 0 rgba(20,18,15,.22);text-align:center}
+.note b{display:block;font-size:3rem;line-height:.85}
+.headline{position:relative;z-index:2;background:var(--ink);color:var(--paper);font-weight:900;
+  font-size:clamp(1.75rem,7.6vw,2.45rem);line-height:1.08;padding:18px 20px 20px;
+  margin-top:calc(-1 * clamp(3.6rem,21vw,6.4rem));transform:rotate(-1.4deg);box-shadow:-7px 7px 0 var(--copper)}
+.lead{font-size:1.08rem;font-weight:500;margin:26px 0 22px;max-width:30em}
+.sig{margin-top:16px;font-size:.86rem;font-weight:700;color:var(--muted);text-align:center}
+
+/* ---------- שאלה ---------- */
+.qhead{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-top:6px}
+.num{font-family:'Karantina','Heebo',sans-serif;font-weight:700;font-size:5rem;line-height:.8;color:var(--copper);direction:ltr}
+.sec{background:var(--black);color:#fff;font-weight:700;font-size:.8rem;padding:6px 11px 8px;border-bottom:3px solid var(--copper)}
+h2{font-weight:900;font-size:clamp(1.5rem,6.2vw,1.95rem);line-height:1.14;margin:12px 0 6px}
+.hint{color:var(--muted);font-weight:500;font-size:.98rem;margin-bottom:4px}
+.opts{display:grid;gap:12px;margin-top:20px}
+.opt{font:inherit;font-weight:700;font-size:1.05rem;text-align:right;color:var(--ink);background:var(--card);
+  border:2px solid var(--ink);padding:14px 16px;cursor:pointer;display:flex;align-items:center;gap:12px;
+  box-shadow:-4px 4px 0 var(--ink);transition:transform .12s ease,box-shadow .12s ease,background .12s ease;
+  -webkit-tap-highlight-color:transparent}
+.opts.dense{gap:9px;margin-top:16px}
+.opts.dense .opt{padding:10px 14px}
+.opt:active{transform:translate(-2px,2px);box-shadow:-2px 2px 0 var(--ink)}
+.opt[aria-pressed="true"]{background:var(--ink);color:var(--paper);box-shadow:-4px 4px 0 var(--copper)}
+.opt .box{flex:none;width:20px;height:20px;border:2px solid currentColor;display:grid;place-items:center}
+.opt[aria-pressed="true"] .box{background:var(--copper);border-color:var(--copper)}
+.opt[aria-pressed="true"] .box::after{content:"";width:9px;height:5px;border:solid var(--ink);border-width:0 0 3px 3px;transform:rotate(-45deg) translate(1px,-1px)}
+.scale{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:22px}
+.scale .opt{justify-content:center;font-family:'Karantina','Heebo',sans-serif;font-size:2.3rem;line-height:1;padding:12px 0}
+.ends{display:flex;justify-content:space-between;gap:16px;margin-top:14px;font-size:.9rem;font-weight:700;color:var(--muted)}
+.ends span:last-child{text-align:left}
+.field{margin-top:22px}
+input[type=text],input[type=email],textarea{font:inherit;font-size:1.3rem;font-weight:500;width:100%;
+  color:var(--ink);background:transparent;border:0;border-bottom:3px solid var(--ink);border-radius:0;padding:12px 2px;outline:0}
+textarea{font-size:1.12rem;min-height:150px;resize:vertical;border:2px solid var(--ink);padding:12px 14px;background:var(--card)}
+input.other{font-size:1.05rem;border-bottom-width:2px;padding:10px 2px;margin-top:16px}
+input:focus,textarea:focus{border-color:var(--copper);box-shadow:0 3px 0 var(--copper)}
+textarea:focus{box-shadow:-4px 4px 0 var(--copper)}
+input::placeholder,textarea::placeholder{color:#a39d92;font-weight:400}
+.ltr{direction:ltr;text-align:right}
+.err{color:#a3261a;font-weight:700;font-size:.92rem;margin-top:12px;min-height:1.3em}
+.hp{position:absolute;width:1px;height:1px;padding:0;border:0;opacity:0;overflow:hidden;clip-path:inset(50%);pointer-events:none}
+
+/* ---------- כפתורים וניווט ---------- */
+.primary{font:inherit;font-weight:900;font-size:1.12rem;color:var(--paper);background:var(--ink);border:0;
+  border-bottom:5px solid var(--copper);padding:15px 22px 13px;cursor:pointer;width:100%;
+  transition:transform .12s ease,opacity .2s ease;-webkit-tap-highlight-color:transparent}
+.primary:active{transform:translateY(2px)}
+.primary:disabled{opacity:.32;cursor:not-allowed}
+.primary.big{font-size:1.3rem;padding:18px 22px 16px}
+.primary.skip{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 2px var(--ink)}
+.ghost{font:inherit;font-weight:700;font-size:1rem;color:var(--ink);background:none;border:0;padding:15px 8px;cursor:pointer;
+  text-decoration:underline;text-underline-offset:4px;flex:none;order:-1}
+.nav{position:sticky;bottom:0;display:flex;gap:10px;align-items:center;
+  padding:12px 0 calc(14px + env(safe-area-inset-bottom));
+  background:linear-gradient(to top,var(--paper) 72%,rgba(245,245,240,0))}
+.nav[hidden]{display:none}
+:focus-visible{outline:3px solid var(--copper);outline-offset:3px}
+input:focus-visible,textarea:focus-visible{outline:0}
+
+/* ---------- מסך סיום ---------- */
+.done{padding-top:8vh}
+.done .giant{font-size:clamp(8rem,46vw,13rem);text-align:right;padding-top:0}
+.done h2{font-size:clamp(1.7rem,7vw,2.2rem);margin-top:18px}
+.done p{font-size:1.1rem;font-weight:500;margin:14px 0 28px;color:#dedcd3;max-width:26em}
+.done .primary{background:var(--paper);color:var(--ink);text-align:center;text-decoration:none;display:block}
+.demo{position:fixed;top:0;left:0;right:0;z-index:9;background:var(--note);color:var(--ink);font-weight:700;font-size:.8rem;text-align:center;padding:5px 10px}
+.demo[hidden]{display:none}
+.demo:not([hidden]) ~ .app{padding-top:26px}
+
+@media (min-width:700px){
+  .app{padding:0 28px}
+  .opts.dense{grid-template-columns:1fr 1fr}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="demo" id="demo" hidden>מצב תצוגה: התשובות עדיין לא נשמרות לגיליון</div>
+<div class="app">
+  <header class="top">
+    <span class="brand">BENJO</span>
+    <span class="count" id="count" aria-live="polite"></span>
+  </header>
+  <div class="progress" id="progress" hidden><b id="bar"></b></div>
+  <main id="stage"></main>
+  <footer class="nav" id="nav" hidden>
+    <button type="button" class="primary" id="next">הבא</button>
+    <button type="button" class="ghost" id="back">חזרה</button>
+  </footer>
+</div>
+
+<script>
+(() => {
+  /* ======================================================
+     הגדרות: רק את החלק הזה צריך לערוך
+     ====================================================== */
+  const CONFIG = {
+    // כתובת ה-Web App של Google Apps Script (נגמרת ב-/exec). ריק = מצב תצוגה, לא נשמר כלום.
+    SHEETS_ENDPOINT: '',
+    // מספר וואטסאפ בפורמט בינלאומי בלי פלוס, למשל 972501234567. ריק = בלי כפתור וואטסאפ.
+    WHATSAPP: '',
+  };
+
+  /* ======================================================
+     השאלות. אפשר להוסיף, למחוק ולשנות סדר בחופשיות:
+     הגיליון מוסיף עמודה לבד לפי col.
+     type: text | long | single | multi | scale
+     sec: שם הפרק (נמשך עד ה-sec הבא) · other: שדה "משהו אחר" · required: חובה
+     ====================================================== */
+  const picked = (a, id) => [...(a[id] || []), (a[id + '_other'] || '').trim()].filter(Boolean);
+
+  const STEPS = [
+    { sec:'עליך', id:'name', col:'שם', type:'text', q:'איך קוראים לך?', placeholder:'שם מלא', autocomplete:'name', required:true },
+    { id:'platforms', col:'רשתות', type:'multi', other:true, q:'באילו רשתות יש לך נוכחות פעילה?', hint:'אפשר לסמן כמה',
+      options:['אינסטגרם','טיקטוק','יוטיוב','פייסבוק','לינקדאין','X (טוויטר)','טלגרם או ערוץ וואטסאפ','פודקאסט'] },
+    { id:'main', col:'רשת ראשית', type:'single', q:'ומה הרשת הראשית שלך?', hint:'זאת שהכי חשוב לך לגדול בה',
+      options:a => picked(a, 'platforms'), when:a => picked(a, 'platforms').length > 1 },
+    { id:'followers', col:'עוקבים', type:'single', q:'כמה עוקבים יש לך ברשת הראשית?',
+      options:['עד 10 אלף','10 עד 50 אלף','50 עד 100 אלף','מעל 100 אלף'] },
+    { id:'niche', col:'תחום התוכן', type:'text', q:'על מה התוכן שלך?', hint:'במשפט אחד',
+      placeholder:'למשל: אוכל ביתי מהיר להורים' },
+    { id:'audience', col:'הקהל', type:'long', q:'מי הקהל שלך?', hint:'גיל, מה מעניין אותם, למה הם עוקבים' },
+
+    { sec:'התוכן', id:'formats', col:'סוגי תוכן', type:'multi', other:true, q:'אילו סוגי תוכן עולים אצלך?', hint:'אפשר לסמן כמה',
+      options:['סרטונים קצרים (רילס, טיקטוק, שורטס)','סרטונים ארוכים','סטוריז','קרוסלות ופוסטים','לייבים','פודקאסט','ניוזלטר'] },
+    { id:'posts', col:'תכנים בשבוע', type:'single', q:'כמה תכנים עולים אצלך בשבוע?',
+      options:['1 עד 2','3 עד 5','6 עד 10','יותר מ-10'] },
+    { id:'hours', col:'שעות בשבוע', type:'single', q:'כמה שעות בשבוע הולכות על יצירת התוכן?',
+      hint:'הכל ביחד: רעיונות, צילום, עריכה, כתוביות ופרסום',
+      options:['עד 5','5 עד 10','10 עד 20','מעל 20'] },
+
+    { sec:'התהליך היום', id:'process', col:'התהליך היום', type:'long', q:'איך נולד אצלך סרטון, מהרעיון ועד הפרסום?',
+      hint:'שלב אחרי שלב, אפשר בנקודות',
+      placeholder:'למשל: רעיון בפתקים, צילום בטלפון, עריכה ב-CapCut, כתוביות, כיתוב, פרסום' },
+    { id:'pain', col:'איפה הזמן נשרף', type:'multi', other:true, q:'איפה הכי הרבה זמן נשרף?', hint:'אפשר לסמן כמה',
+      options:['רעיונות ותסריטים','צילום','עריכת וידאו','כתוביות','קאברים וגרפיקה','כיתובים ופרסום',
+               'תגובות והודעות','ניתוח נתונים','עבודה מול מותגים'] },
+    { id:'editor', col:'מי עורך', type:'single', q:'מי עורך את הסרטונים היום?',
+      options:['אני','עורך חיצוני','צוות קבוע','משולב'] },
+    { id:'software', col:'תוכנות עריכה', type:'multi', other:true, q:'באילו תוכנות עורכים אצלך?', hint:'אפשר לסמן כמה',
+      options:['CapCut','Premiere Pro','DaVinci Resolve','Final Cut','InShot או VN','ישר באפליקציה של הרשת'] },
+    { id:'gear', col:'ציוד', type:'multi', other:true, q:'עם איזה ציוד מצלמים אצלך?', hint:'אפשר לסמן כמה',
+      options:['טלפון','מצלמה','הקלטת מסך','מיקרופון חיצוני','תאורה'] },
+
+    { sec:'AI וטכנולוגיה', id:'tools', col:'כלי AI', type:'multi', other:true, q:'באילו כלי AI יצא לך להשתמש?', hint:'אפשר לסמן כמה',
+      options:['ChatGPT','Claude','Gemini','CapCut AI','כלי תמונה (Midjourney ודומיו)','כלי וידאו (Runway, Kling, Veo)','כלי קול (ElevenLabs ודומיו)','עוד לא ממש'] },
+    { id:'paid', col:'מנויים בתשלום', type:'multi', other:true, q:'על אילו כלי AI יש לך מנוי בתשלום?', hint:'אפשר לסמן כמה',
+      options:['ChatGPT','Claude','Gemini','אין לי מנוי בתשלום'] },
+    { id:'uses', col:'שימושים ב-AI', type:'multi', other:true, q:'למה AI משמש אותך היום?', hint:'אפשר לסמן כמה',
+      options:['רעיונות לתוכן','תסריטים','כיתובים ופוסטים','תמונות וגרפיקה','עריכה וכתוביות','מחקר ולמידה','מענה להודעות','כמעט לא בשימוש'] },
+    { id:'level', col:'רמת AI (1-5)', type:'scale', q:'כמה AI הוא חלק מהעבודה שלך היום?',
+      min:'לא נוגע בזה', max:'חלק מהשגרה היומית' },
+    { id:'fail', col:'מה לא עבד', type:'long', q:'ניסית משהו עם AI וזה לא עבד?',
+      hint:'מה ניסית ומה תסכל. אם לא היה כזה, אפשר לדלג' },
+    { id:'device', col:'מחשב', type:'single', q:'על איזה מחשב העבודה שלך?',
+      options:['Mac','Windows','רק טלפון או טאבלט'] },
+    { id:'tech', col:'נוחות טכנית (1-5)', type:'scale', q:'כמה נוח לך להתקין ולהגדיר תוכנות חדשות?',
+      min:'עדיף שיעשו בשבילי', max:'בלי בעיה, לבד' },
+
+    { sec:'המטרה', id:'wish', col:'המשאלה', type:'long', q:'מה הדבר האחד שהיית רוצה ש-AI יעשה בשבילך כבר מחר בבוקר?',
+      placeholder:'למשל: לקחת צילום גולמי ולהחזיר לי רילס ערוך עם כתוביות' },
+    { id:'success', col:'מה ייחשב הצלחה', type:'long', q:'מה צריך לקרות בסוף השיעורים כדי שזה יהיה שווה לך את הזמן?' },
+    { id:'learn', col:'סגנון למידה', type:'single', q:'איך הכי קל לך ללמוד?',
+      options:['לראות הדגמה ואז לנסות','לעשות יחד, צעד אחרי צעד','לקבל משימה ולחזור עם שאלות'] },
+    { id:'email', col:'אימייל', type:'text', email:true, ltr:true, q:'לאיזה מייל לשלוח את הזימון לזום?',
+      placeholder:'name@email.com', autocomplete:'email' },
+    { id:'more', col:'עוד משהו', type:'long', q:'עוד משהו שכדאי שאדע?', hint:'מטרות, חששות, דדליין קרוב, כל דבר' },
+  ];
+  // כל שאלה יורשת את שם הפרק מהשאלה שלפניה
+  STEPS.reduce((sec, s) => (s.sec = s.sec || sec), '');
+
+  const DRAFT_KEY = 'benjo-onboarding-draft';
+  const $ = id => document.getElementById(id);
+  const stage = $('stage'), nav = $('nav'), nextBtn = $('next'), backBtn = $('back');
+  const ref = (new URLSearchParams(location.search).get('ref') || '').slice(0, 40);
+
+  let answers = {};
+  try { answers = JSON.parse(localStorage.getItem(DRAFT_KEY)) || {}; } catch (e) {}
+  let flow = [];        // השאלות שמוצגות כרגע (אחרי סינון when)
+  let i = -1;           // -1 פתיח, flow.length מסך סיום
+  let sending = false;
+
+  if (!CONFIG.SHEETS_ENDPOINT) $('demo').hidden = false;
+
+  function h(tag, props, ...kids) {
+    const el = document.createElement(tag);
+    for (const [k, v] of Object.entries(props || {})) {
+      if (k === 'class') el.className = v;
+      else if (k.startsWith('on')) el.addEventListener(k.slice(2), v);
+      else if (v === true) el.setAttribute(k, '');
+      else if (v !== false && v != null) el.setAttribute(k, v);
+    }
+    for (const kid of kids.flat()) {
+      if (kid == null || kid === false) continue;
+      el.append(kid.nodeType ? kid : document.createTextNode(kid));
+    }
+    return el;
+  }
+  const save = () => { try { localStorage.setItem(DRAFT_KEY, JSON.stringify(answers)); } catch (e) {} };
+  const pad = n => String(n).padStart(2, '0');
+  const optionsOf = step => typeof step.options === 'function' ? step.options(answers) : step.options;
+  const visible = () => STEPS.filter(s => !s.when || s.when(answers));
+
+  // הערך כפי שיישמר בגיליון
+  function valueOf(step) {
+    const v = answers[step.id];
+    if (step.type === 'multi') return picked(answers, step.id).join(', ');
+    if (step.type === 'single' && !optionsOf(step).includes(v)) return '';
+    return v == null ? '' : String(v).trim();
+  }
+  const isEmpty = step => valueOf(step) === '';
+  function valid(step) {
+    if (step.required && isEmpty(step)) return false;
+    if (step.email && !isEmpty(step)) return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(valueOf(step));
+    return true;
+  }
+  function refreshNext() {
+    const step = flow[i];
+    if (!step) return;
+    const last = i === flow.length - 1;
+    const skip = !last && !step.required && isEmpty(step);
+    nextBtn.disabled = sending || !valid(step);
+    nextBtn.textContent = sending ? 'שולח...' : last ? 'שליחה' : skip ? 'דילוג' : 'הבא';
+    nextBtn.classList.toggle('skip', skip);
+  }
+
+  /* ---------- מסכים ---------- */
+  function renderHero() {
+    const started = Object.keys(answers).length > 0;
+    return h('section', { class:'hero step' },
+      h('div', { class:'tag' }, 'AI FOR CREATORS'),
+      h('div', { class:'giant', 'aria-hidden':'true' }, h('span', null, 'שלום'), h('span', null, 'שלום')),
+      h('div', { class:'note' }, h('b', null, '8'), 'דקות'),
+      h('h1', { class:'headline' }, 'כמה שאלות לפני השיעור הראשון'),
+      h('p', { class:'lead' }, 'התשובות עוזרות לי לבנות את השיעורים סביב איך שהעבודה שלך נראית היום. אין תשובות נכונות, ואפשר לדלג על מה שלא רלוונטי.'),
+      h('button', { type:'button', class:'primary big', onclick:() => {
+          flow = visible();
+          // ממשיכים מהשאלה הראשונה שעוד לא נענתה
+          const at = started ? flow.findIndex(s => isEmpty(s)) : 0;
+          go(at < 0 ? flow.length - 1 : at);
+        } }, started ? 'ממשיכים מאיפה שעצרת' : 'מתחילים'),
+      h('p', { class:'sig' }, 'בן גביש · Benjo')
+    );
+  }
+
+  function renderStep(step) {
+    const wrap = h('section', { class:'step' },
+      h('div', { class:'qhead' },
+        h('div', { class:'num', 'aria-hidden':'true' }, pad(i + 1)),
+        h('div', { class:'sec' }, step.sec)),
+      h('h2', { id:'q-title' }, step.q),
+      step.hint ? h('p', { class:'hint' }, step.hint) : null
+    );
+
+    if (step.type === 'text') {
+      const input = h('input', { type: step.email ? 'email' : 'text', class: step.ltr ? 'ltr' : '',
+        placeholder: step.placeholder || '', autocomplete: step.autocomplete || 'off', 'aria-labelledby':'q-title',
+        enterkeyhint:'next', inputmode: step.email ? 'email' : null, autocapitalize: step.ltr ? 'off' : null, spellcheck:'false' });
+      input.value = answers[step.id] || '';
+      input.addEventListener('input', () => { answers[step.id] = input.value; save(); refreshNext(); });
+      input.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); advance(); } });
+      wrap.append(h('div', { class:'field' }, input));
+    }
+
+    if (step.type === 'long') {
+      const ta = h('textarea', { placeholder: step.placeholder || '', 'aria-labelledby':'q-title', maxlength:'1500' });
+      ta.value = answers[step.id] || '';
+      ta.addEventListener('input', () => { answers[step.id] = ta.value; save(); refreshNext(); });
+      wrap.append(h('div', { class:'field' }, ta));
+    }
+
+    if (step.type === 'single' || step.type === 'multi') {
+      const multi = step.type === 'multi';
+      const options = optionsOf(step);
+      const box = h('div', { class:'opts' + (options.length > 5 ? ' dense' : ''), role:'group', 'aria-labelledby':'q-title' });
+      options.forEach(label => {
+        const on = multi ? (answers[step.id] || []).includes(label) : answers[step.id] === label;
+        const btn = h('button', { type:'button', class:'opt', 'aria-pressed': String(on) },
+          multi ? h('span', { class:'box', 'aria-hidden':'true' }) : null, label);
+        btn.addEventListener('click', () => {
+          if (multi) {
+            const set = new Set(answers[step.id] || []);
+            set.has(label) ? set.delete(label) : set.add(label);
+            answers[step.id] = options.filter(o => set.has(o));
+            btn.setAttribute('aria-pressed', String(set.has(label)));
+            save(); refreshNext();
+          } else {
+            answers[step.id] = label;
+            box.querySelectorAll('.opt').forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
+            save(); refreshNext();
+            setTimeout(advance, 230);
+          }
+        });
+        box.append(btn);
+      });
+      wrap.append(box);
+      if (step.other) {
+        const other = h('input', { type:'text', class:'other', placeholder:'משהו אחר? אפשר לכתוב כאן', 'aria-label':'משהו אחר',
+          autocomplete:'off', enterkeyhint:'next' });
+        other.value = answers[step.id + '_other'] || '';
+        other.addEventListener('input', () => { answers[step.id + '_other'] = other.value; save(); refreshNext(); });
+        other.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); advance(); } });
+        wrap.append(other);
+      }
+    }
+
+    if (step.type === 'scale') {
+      const box = h('div', { class:'scale', role:'group', 'aria-labelledby':'q-title' });
+      for (let n = 1; n <= 5; n++) {
+        const btn = h('button', { type:'button', class:'opt', 'aria-pressed': String(answers[step.id] === n),
+          'aria-label': n + ' מתוך 5' }, String(n));
+        btn.addEventListener('click', () => {
+          answers[step.id] = n;
+          box.querySelectorAll('.opt').forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
+          save(); refreshNext();
+          setTimeout(advance, 230);
+        });
+        box.append(btn);
+      }
+      wrap.append(box, h('div', { class:'ends' }, h('span', null, '1 · ' + step.min), h('span', null, step.max + ' · 5')));
+    }
+
+    if (i === flow.length - 1) {
+      const hp = h('input', { type:'text', class:'hp', name:'website', tabindex:'-1', autocomplete:'off', 'aria-hidden':'true' });
+      hp.addEventListener('input', () => { answers.website = hp.value; });
+      wrap.append(hp, h('p', { class:'err', id:'err', role:'alert' }));
+    }
+    return wrap;
+  }
+
+  function renderDone() {
+    const first = (answers.name || '').trim().split(/\s+/)[0] || '';
+    const el = h('section', { class:'step done' },
+      h('div', { class:'giant', 'aria-hidden':'true' }, 'תודה'),
+      h('h2', null, first ? 'קיבלתי, ' + first + '.' : 'קיבלתי.'),
+      h('p', null, 'אני עובר על התשובות ובונה לפיהן את השיעורים. נתראה בזום.')
+    );
+    if (CONFIG.WHATSAPP) {
+      el.append(h('a', { class:'primary big', target:'_blank', rel:'noopener',
+        href:'https://wa.me/' + CONFIG.WHATSAPP + '?text=' + encodeURIComponent('היי בן, מילאתי את השאלון') },
+        'לדבר איתי בוואטסאפ'));
+    }
+    return el;
+  }
+
+  /* ---------- זרימה ---------- */
+  function go(n) {
+    const current = flow[i];
+    flow = visible();
+    // שאלה מותנית יכולה להופיע או להיעלם, אז מחשבים מחדש את המיקום לפי השאלה שממנה באנו
+    if (current && n === i + 1) n = flow.indexOf(current) + 1;
+    if (current && n === i - 1) n = Math.max(flow.indexOf(current), 0) - 1;
+    i = n;
+    const inForm = i >= 0 && i < flow.length;
+    document.body.classList.toggle('dark', i >= flow.length);
+    nav.hidden = !inForm;
+    $('progress').hidden = !inForm;
+    $('count').textContent = inForm ? pad(i + 1) + ' / ' + pad(flow.length) : '';
+    $('bar').style.width = inForm ? ((i + 1) / flow.length * 100) + '%' : '0';
+    stage.replaceChildren(i < 0 ? renderHero() : inForm ? renderStep(flow[i]) : renderDone());
+    refreshNext();
+    window.scrollTo(0, 0);
+    const focusable = stage.querySelector('input:not(.hp):not(.other),textarea');
+    if (focusable) focusable.focus({ preventScroll: true });
+  }
+
+  function advance() {
+    const step = flow[i];
+    if (!step || sending || !valid(step)) return;
+    if (i < flow.length - 1) return go(i + 1);
+    submit();
+  }
+
+  async function submit() {
+    const err = $('err');
+    if (err) err.textContent = '';
+    if (answers.website) return finish();          // מלכודת בוטים: לא שולחים
+    const shown = visible();
+    const row = {};
+    STEPS.forEach(s => { row[s.col] = shown.includes(s) ? valueOf(s) : ''; });
+    row['מקור'] = ref;
+    if (!CONFIG.SHEETS_ENDPOINT) { console.log('מצב תצוגה, לא נשלח:', row); return finish(true); }
+    sending = true; refreshNext();
+    try {
+      // text/plain כדי שהדפדפן לא ישלח בקשת preflight ש-Apps Script לא עונה עליה
+      const res = await fetch(CONFIG.SHEETS_ENDPOINT, { method:'POST', redirect:'follow',
+        headers:{ 'Content-Type':'text/plain;charset=utf-8' }, body: JSON.stringify({ answers: row }) });
+      const out = await res.json();
+      if (!out.ok) throw new Error(out.error || 'save failed');
+      sending = false;
+      finish();
+    } catch (e) {
+      sending = false; refreshNext();
+      if (err) err.textContent = 'השליחה לא הצליחה. התשובות שמורות אצלך בדפדפן, אפשר לנסות שוב.';
+    }
+  }
+  function finish(keepDraft) {
+    if (!keepDraft) { try { localStorage.removeItem(DRAFT_KEY); } catch (e) {} }
+    go(flow.length);
+  }
+
+  nextBtn.addEventListener('click', advance);
+  backBtn.addEventListener('click', () => { if (!sending) go(i - 1); });
+  go(-1);
+})();
+</script>
+</body>
+</html>
